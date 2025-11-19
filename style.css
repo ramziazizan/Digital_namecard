@@ -1,51 +1,69 @@
-/* style.css (Digital Name Card Minimalis) */
+/* style.css (Digital Name Card - KOREKSI TOTAL FOTO & LAYOUT) */
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e9ecef; /* Latar belakang abu-abu muda */
+    /* Ganti warna latar belakang body agar menyatu dengan background gambar Anda */
+    background-color: #f0f0f0; /* Atau bisa juga disetel ke warna merah terang dari gambar Anda */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    overflow: hidden; /* Mencegah scroll yang tidak diinginkan */
 }
 
+/* CONTAINER UTAMA KARTU */
 .card-container {
     background-color: #fff;
-    padding: 30px;
+    padding: 25px; /* Sedikit kurangi padding */
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    max-width: 350px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Efek shadow lebih halus */
+    max-width: 320px; /* Lebar maksimal sedikit dikecilkan */
     width: 90%; 
     text-align: center;
+    
+    /* PENTING: Untuk memastikan kartu berada di tengah vertikal */
+    position: relative; /* Jika ada gambar di belakangnya */
+    top: 0; /* Pastikan tidak ada offset default */
+    transform: none; /* Hapus transform jika sebelumnya ada */
 }
 
-/* --- Foto Profil --- */
-.profile-pic img {
-    width: 120px;
+/* --- FOTO PROFIL (PERBAIKAN KRITIS DI SINI) --- */
+.profile-pic {
+    width: 120px; /* Ukuran wadah foto */
     height: 120px;
-    border-radius: 50%; /* Bentuk bulat */
-    object-fit: cover;
-    margin-bottom: 15px;
-    border: 4px solid #007bff; /* Border biru untuk fokus */
+    border-radius: 50%; /* Bulat */
+    overflow: hidden; /* PENTING: Sembunyikan bagian gambar yang keluar dari bingkai */
+    margin: -70px auto 15px auto; /* PENTING: Geser foto sedikit ke atas dan tengah */
+    border: 5px solid #007bff; /* Border biru untuk fokus */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Bayangan untuk efek pop-out */
+    background-color: #fff; /* Latar belakang jika gambar tidak sepenuhnya mengisi */
+}
+
+.profile-pic img {
+    width: 100%; /* PENTING: Gambar mengisi penuh wadah 120x120px */
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar menutupi area tanpa terdistorsi */
+    object-position: center top; /* PENTING: Fokuskan bagian atas gambar (wajah) */
+    display: block; /* Hapus spasi di bawah gambar */
 }
 
 /* --- Teks --- */
 h1 {
     margin: 10px 0 5px;
     color: #333;
-    font-size: 1.8em;
+    font-size: 1.6em; /* Sedikit dikecilkan untuk kepadatan */
 }
 
 .title {
     color: #007bff;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: 600;
 }
 
 .description {
     color: #6c757d;
-    font-size: 0.9em;
+    font-size: 0.85em; /* Sedikit dikecilkan */
     margin: 15px 0 20px;
 }
 
@@ -66,11 +84,12 @@ hr {
 
 .btn {
     display: block;
-    padding: 12px;
+    padding: 10px; /* Sedikit kurangi padding */
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s;
+    font-size: 0.9em; /* Sedikit dikecilkan */
 }
 
 .primary {
@@ -96,15 +115,28 @@ hr {
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 18px; /* Sedikit kurangi gap */
 }
 
 .social-links a {
     color: #6c757d;
-    font-size: 1.5em;
+    font-size: 1.4em; /* Sedikit dikecilkan */
     transition: color 0.3s;
 }
 
 .social-links a:hover {
     color: #007bff;
-        }
+}
+
+/* MEDIA QUERY: Untuk layar yang lebih kecil */
+@media (max-width: 375px) {
+    .card-container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    .profile-pic {
+        margin: -60px auto 10px auto; /* Sesuaikan margin di layar sangat kecil */
+    }
+    }
